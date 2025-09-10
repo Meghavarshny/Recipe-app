@@ -11,7 +11,7 @@ const recipeValidationSchema = Joi.object({
   cuisine: Joi.string().trim().required(),
   caloriesPerServing: Joi.number().min(1).required(),
   tags: Joi.array().items(Joi.string()).default([]),
-  userId: Joi.string().required(),
+  userId: Joi.string().optional(),  // Make userId optional
   image: Joi.string().uri().allow(null).default(null),
   rating: Joi.number().min(0).max(5).default(0)
 });
