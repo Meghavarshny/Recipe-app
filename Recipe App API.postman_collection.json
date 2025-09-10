@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Recipe App API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"description": "A complete CRUD API for managing recipes"
+	},
+	"item": [
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "Create Recipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Spaghetti Carbonara\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 10,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 550,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara.jpg\",\n  \"rating\": 4.5\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/recipes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes"
+							]
+						},
+						"description": "Create a new recipe"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Spaghetti Carbonara\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 10,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 550,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara.jpg\",\n  \"rating\": 4.5\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Recipe created successfully\",\n  \"data\": {\n    \"_id\": \"60a8f8b8e8d8a81f4c9f8a8a\",\n    \"name\": \"Spaghetti Carbonara\",\n    \"ingredients\": [\n      \"Spaghetti\",\n      \"Eggs\",\n      \"Pancetta\",\n      \"Parmesan cheese\",\n      \"Black pepper\"\n    ],\n    \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n    \"prepTimeMinutes\": 10,\n    \"cookTimeMinutes\": 15,\n    \"servings\": 4,\n    \"difficulty\": \"Medium\",\n    \"cuisine\": \"Italian\",\n    \"caloriesPerServing\": 550,\n    \"tags\": [\"pasta\", \"italian\", \"dinner\"],\n    \"userId\": \"user123\",\n    \"image\": \"https://example.com/spaghetti-carbonara.jpg\",\n    \"rating\": 4.5,\n    \"reviewCount\": 0,\n    \"createdAt\": \"2023-05-22T10:00:00.000Z\",\n    \"updatedAt\": \"2023-05-22T10:00:00.000Z\",\n    \"__v\": 0\n  }\n}"
+						},
+						{
+							"name": "Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"\",\n  \"ingredients\": [],\n  \"instructions\": \"\",\n  \"prepTimeMinutes\": -5,\n  \"cookTimeMinutes\": -5,\n  \"servings\": -2,\n  \"difficulty\": \"Invalid\",\n  \"cuisine\": \"\",\n  \"caloriesPerServing\": -100\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Validation error\",\n  \"error\": \"\\\"name\\\" is not allowed to be empty\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/recipes?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Get all recipes with pagination"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes?page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Recipes retrieved successfully\",\n  \"data\": [\n    {\n      \"_id\": \"60a8f8b8e8d8a81f4c9f8a8a\",\n      \"name\": \"Spaghetti Carbonara\",\n      \"ingredients\": [\n        \"Spaghetti\",\n        \"Eggs\",\n        \"Pancetta\",\n        \"Parmesan cheese\",\n        \"Black pepper\"\n      ],\n      \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n      \"prepTimeMinutes\": 10,\n      \"cookTimeMinutes\": 15,\n      \"servings\": 4,\n      \"difficulty\": \"Medium\",\n      \"cuisine\": \"Italian\",\n      \"caloriesPerServing\": 550,\n      \"tags\": [\"pasta\", \"italian\", \"dinner\"],\n      \"userId\": \"user123\",\n      \"image\": \"https://example.com/spaghetti-carbonara.jpg\",\n      \"rating\": 4.5,\n      \"reviewCount\": 0,\n      \"createdAt\": \"2023-05-22T10:00:00.000Z\",\n      \"updatedAt\": \"2023-05-22T10:00:00.000Z\",\n      \"__v\": 0\n    }\n  ],\n  \"pagination\": {\n    \"currentPage\": 1,\n    \"totalPages\": 1,\n    \"totalRecipes\": 1,\n    \"hasNext\": false,\n    \"hasPrev\": false\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Recipe by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/recipes/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60a8f8b8e8d8a81f4c9f8a8a"
+								}
+							]
+						},
+						"description": "Get a single recipe by ID"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60a8f8b8e8d8a81f4c9f8a8a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Recipe retrieved successfully\",\n  \"data\": {\n    \"_id\": \"60a8f8b8e8d8a81f4c9f8a8a\",\n    \"name\": \"Spaghetti Carbonara\",\n    \"ingredients\": [\n      \"Spaghetti\",\n      \"Eggs\",\n      \"Pancetta\",\n      \"Parmesan cheese\",\n      \"Black pepper\"\n    ],\n    \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n    \"prepTimeMinutes\": 10,\n    \"cookTimeMinutes\": 15,\n    \"servings\": 4,\n    \"difficulty\": \"Medium\",\n    \"cuisine\": \"Italian\",\n    \"caloriesPerServing\": 550,\n    \"tags\": [\"pasta\", \"italian\", \"dinner\"],\n    \"userId\": \"user123\",\n    \"image\": \"https://example.com/spaghetti-carbonara.jpg\",\n    \"rating\": 4.5,\n    \"reviewCount\": 0,\n    \"createdAt\": \"2023-05-22T10:00:00.000Z\",\n    \"updatedAt\": \"2023-05-22T10:00:00.000Z\",\n    \"__v\": 0\n  }\n}"
+						},
+						{
+							"name": "Recipe Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "invalid_id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Invalid recipe ID format\"\n}"
+						},
+						{
+							"name": "Recipe Not Found (Valid ID Format)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "507f1f77bcf86cd799439011"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Recipe",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Spaghetti Carbonara with Mushrooms\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Mushrooms\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 15,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 580,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n  \"rating\": 4.7\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/recipes/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60a8f8b8e8d8a81f4c9f8a8a"
+								}
+							]
+						},
+						"description": "Update a recipe by ID"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Spaghetti Carbonara with Mushrooms\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Mushrooms\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 15,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 580,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n  \"rating\": 4.7\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60a8f8b8e8d8a81f4c9f8a8a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Recipe updated successfully\",\n  \"data\": {\n    \"_id\": \"60a8f8b8e8d8a81f4c9f8a8a\",\n    \"name\": \"Spaghetti Carbonara with Mushrooms\",\n    \"ingredients\": [\n      \"Spaghetti\",\n      \"Eggs\",\n      \"Pancetta\",\n      \"Mushrooms\",\n      \"Parmesan cheese\",\n      \"Black pepper\"\n    ],\n    \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n    \"prepTimeMinutes\": 15,\n    \"cookTimeMinutes\": 15,\n    \"servings\": 4,\n    \"difficulty\": \"Medium\",\n    \"cuisine\": \"Italian\",\n    \"caloriesPerServing\": 580,\n    \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n    \"userId\": \"user123\",\n    \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n    \"rating\": 4.7,\n    \"reviewCount\": 0,\n    \"createdAt\": \"2023-05-22T10:00:00.000Z\",\n    \"updatedAt\": \"2023-05-22T11:00:00.000Z\",\n    \"__v\": 0\n  }\n}"
+						},
+						{
+							"name": "Recipe Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Spaghetti Carbonara with Mushrooms\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Mushrooms\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 15,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 580,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n  \"rating\": 4.7\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "507f1f77bcf86cd799439011"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+						},
+						{
+							"name": "Invalid ID Format",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Spaghetti Carbonara with Mushrooms\",\n  \"ingredients\": [\n    \"Spaghetti\",\n    \"Eggs\",\n    \"Pancetta\",\n    \"Mushrooms\",\n    \"Parmesan cheese\",\n    \"Black pepper\"\n  ],\n  \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n  \"prepTimeMinutes\": 15,\n  \"cookTimeMinutes\": 15,\n  \"servings\": 4,\n  \"difficulty\": \"Medium\",\n  \"cuisine\": \"Italian\",\n  \"caloriesPerServing\": 580,\n  \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n  \"userId\": \"user123\",\n  \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n  \"rating\": 4.7\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "invalid_id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Invalid recipe ID format\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/recipes/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60a8f8b8e8d8a81f4c9f8a8a"
+								}
+							]
+						},
+						"description": "Delete a recipe by ID"
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "60a8f8b8e8d8a81f4c9f8a8a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Recipe deleted successfully\",\n  \"data\": {\n    \"_id\": \"60a8f8b8e8d8a81f4c9f8a8a\",\n    \"name\": \"Spaghetti Carbonara with Mushrooms\",\n    \"ingredients\": [\n      \"Spaghetti\",\n      \"Eggs\",\n      \"Pancetta\",\n      \"Mushrooms\",\n      \"Parmesan cheese\",\n      \"Black pepper\"\n    ],\n    \"instructions\": \"1. Cook spaghetti. 2. Fry pancetta and mushrooms. 3. Mix eggs and cheese. 4. Combine all ingredients.\",\n    \"prepTimeMinutes\": 15,\n    \"cookTimeMinutes\": 15,\n    \"servings\": 4,\n    \"difficulty\": \"Medium\",\n    \"cuisine\": \"Italian\",\n    \"caloriesPerServing\": 580,\n    \"tags\": [\"pasta\", \"italian\", \"dinner\", \"mushrooms\"],\n    \"userId\": \"user123\",\n    \"image\": \"https://example.com/spaghetti-carbonara-mushrooms.jpg\",\n    \"rating\": 4.7,\n    \"reviewCount\": 0,\n    \"createdAt\": \"2023-05-22T10:00:00.000Z\",\n    \"updatedAt\": \"2023-05-22T11:00:00.000Z\",\n    \"__v\": 0\n  }\n}"
+						},
+						{
+							"name": "Recipe Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "507f1f77bcf86cd799439011"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+						},
+						{
+							"name": "Invalid ID Format",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v1/recipes/:id",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"recipes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "invalid_id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Invalid recipe ID format\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}

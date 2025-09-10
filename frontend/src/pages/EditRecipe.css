@@ -1,0 +1,43 @@
+.edit-recipe-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.loading,
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.loading {
+  color: var(--text-secondary);
+}
+
+.error-message {
+  color: var(--danger-color);
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.error-message .btn {
+  margin-top: 1rem;
+}

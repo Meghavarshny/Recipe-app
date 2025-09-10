@@ -1,0 +1,230 @@
+/* Theme variables for light and dark mode */
+:root {
+  /* Light theme colors */
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e9ecef;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-hover: rgba(0, 0, 0, 0.15);
+  --primary-color: #4a6fa5;
+  --primary-hover: #3a5a80;
+  --secondary-color: #6c757d;
+  --secondary-hover: #5a6268;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --warning-color: #ffc107;
+  --warning-hover: #e0a800;
+  --header-background: #4a6fa5;
+  --header-text: #ffffff;
+  --footer-background: #f8f9fa;
+  --footer-text: #666666;
+  --input-background: #ffffff;
+  --input-border: #ddd;
+  --input-focus: #4a6fa5;
+  --input-focus-shadow: rgba(74, 111, 165, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #bbbbbb;
+  --border-color: #333333;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --shadow-color-hover: rgba(0, 0, 0, 0.5);
+  --primary-color: #6a9bd5;
+  --primary-hover: #5a8bc5;
+  --secondary-color: #8a949e;
+  --secondary-hover: #7a848e;
+  --danger-color: #e74c3c;
+  --danger-hover: #d62c1a;
+  --success-color: #2ecc71;
+  --success-hover: #27ae60;
+  --warning-color: #f1c40f;
+  --warning-hover: #f39c12;
+  --header-background: #1e1e1e;
+  --header-text: #ffffff;
+  --footer-background: #1e1e1e;
+  --footer-text: #bbbbbb;
+  --input-background: #2d2d2d;
+  --input-border: #444;
+  --input-focus: #6a9bd5;
+  --input-focus-shadow: rgba(106, 155, 213, 0.2);
+}
+
+/* Apply theme variables to elements */
+body {
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.app-header {
+  background-color: var(--header-background);
+  color: var(--header-text);
+}
+
+.app-footer {
+  background-color: var(--footer-background);
+  color: var(--footer-text);
+  border-top: 1px solid var(--border-color);
+}
+
+.recipe-card {
+  background: var(--card-background);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.recipe-card:hover {
+  box-shadow: 0 4px 16px var(--shadow-color-hover);
+}
+
+.recipe-title {
+  color: var(--text-primary);
+}
+
+.recipe-cuisine {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.recipe-difficulty {
+  background-color: var(--primary-color);
+  color: var(--header-text);
+}
+
+.info-item {
+  color: var(--text-secondary);
+}
+
+.feature {
+  background: var(--card-background);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.feature h3 {
+  color: var(--text-primary);
+}
+
+.feature p {
+  color: var(--text-secondary);
+}
+
+.cta-section {
+  background: var(--card-background);
+}
+
+.cta-section h2 {
+  color: var(--text-primary);
+}
+
+.cta-section p {
+  color: var(--text-secondary);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--header-text);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--header-text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-hover);
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  color: var(--header-text);
+}
+
+.btn-danger:hover {
+  background-color: var(--danger-hover);
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  color: var(--header-text);
+}
+
+.btn-success:hover {
+  background-color: var(--success-hover);
+}
+
+/* Form styles */
+.recipe-form {
+  background: var(--card-background);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+label {
+  color: var(--text-primary);
+}
+
+input,
+select,
+textarea {
+  background-color: var(--input-background);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+input.error,
+select.error,
+textarea.error {
+  border-color: var(--danger-color);
+}
+
+.btn-remove {
+  background-color: var(--danger-color);
+  color: var(--header-text);
+}
+
+.btn-remove:hover {
+  background-color: var(--danger-hover);
+}
+
+.btn-add {
+  background-color: var(--success-color);
+  color: var(--header-text);
+}
+
+.btn-add:hover {
+  background-color: var(--success-hover);
+}
+
+/* Error message */
+.error-message {
+  color: var(--danger-color);
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+/* Link styles */
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-hover);
+}

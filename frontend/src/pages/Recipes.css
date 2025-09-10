@@ -1,0 +1,80 @@
+.recipes-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.loading,
+.error-message,
+.no-recipes {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.loading {
+  color: var(--text-secondary);
+}
+
+.error-message {
+  color: var(--danger-color);
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.error-message .btn {
+  margin-top: 1rem;
+}
+
+.no-recipes {
+  color: var(--text-secondary);
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-info {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
