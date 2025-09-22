@@ -27,6 +27,34 @@ A complete CRUD (Create, Read, Update, Delete) application for managing recipes 
 - `PUT /api/v1/recipes/:id` - Update a recipe by ID
 - `DELETE /api/v1/recipes/:id` - Delete a recipe by ID
 
+## Deployment to Render
+
+This application consists of two parts that need to be deployed separately:
+
+### 1. Backend API Service
+- Create a new Web Service in Render
+- Connect it to your GitHub repository
+- Set the following configuration:
+  - Build Command: `npm install`
+  - Start Command: `npm start`
+  - Environment Variables:
+    - `MONGO_URI`: Your MongoDB connection string
+    - `PORT`: 3000 (or let Render auto-assign)
+
+### 2. Frontend Static Site
+- Create a new Static Site in Render
+- Connect it to your GitHub repository
+- Set the following configuration:
+  - Build Command: `npm install && cd frontend && npm install && npm run build`
+  - Publish Directory: `frontend/dist`
+  - Environment Variables:
+    - `VITE_API_BASE_URL`: The URL of your deployed backend API
+
+### Important Notes
+- The frontend and backend must be deployed as separate services
+- Make sure to set the `VITE_API_BASE_URL` environment variable in the frontend to point to your backend API URL
+- Ensure your MongoDB Atlas cluster has the correct IP whitelisting for Render
+
 ## Postman Documentation
 
 The API is fully documented in the included Postman collection file: `Recipe App API.postman_collection.json`
