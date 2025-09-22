@@ -48,27 +48,27 @@ api.interceptors.response.use(
 export const recipeService = {
   // Get all recipes
   getAllRecipes: (page = 1, limit = 10) => {
-    return api.get(`/api/v1/recipes?page=${page}&limit=${limit}`);
+    return api.get(`/recipes?page=${page}&limit=${limit}`);
   },
 
   // Get recipe by ID
   getRecipeById: (id) => {
-    return api.get(`/api/v1/recipes/${id}`);
+    return api.get(`/recipes/${id}`);
   },
 
   // Create a new recipe
   createRecipe: (recipeData) => {
-    return api.post('/api/v1/recipes', recipeData);
+    return api.post('/recipes', recipeData);
   },
 
   // Update a recipe
   updateRecipe: (id, recipeData) => {
-    return api.put(`/api/v1/recipes/${id}`, recipeData);
+    return api.put(`/recipes/${id}`, recipeData);
   },
 
   // Delete a recipe
   deleteRecipe: (id) => {
-    return api.delete(`/api/v1/recipes/${id}`);
+    return api.delete(`/recipes/${id}`);
   },
 };
 
