@@ -1,6 +1,6 @@
 # Recipe App API
 
-A complete CRUD (Create, Read, Update, Delete) application for managing recipes using Node.js, Express.js, and Mongoose. The application follows the MVC pattern and includes comprehensive API documentation using Postman.
+A complete CRUD (Create, Read, Update, Delete) application for managing recipes using Node.js, Express.js, and Mongoose.
 
 ## Features
 
@@ -17,7 +17,6 @@ A complete CRUD (Create, Read, Update, Delete) application for managing recipes 
 - Express.js
 - Mongoose (MongoDB)
 - Joi (Validation)
-- Postman (API Documentation)
 
 ## API Endpoints
 
@@ -27,32 +26,52 @@ A complete CRUD (Create, Read, Update, Delete) application for managing recipes 
 - `PUT /api/v1/recipes/:id` - Update a recipe by ID
 - `DELETE /api/v1/recipes/:id` - Delete a recipe by ID
 
-## Deployment to Render (Single Deployment)
+## Setup Instructions
 
-This application uses a single deployment approach where the Express backend serves both the API and the React frontend:
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd recipe-app
+   ```
 
-### 1. Single Web Service Deployment
-- Create a new Web Service in Render
-- Connect it to your GitHub repository
-- Set the following configuration:
-  - Build Command: `npm install && cd frontend && npm install && npm run build && cd ..`
-  - Start Command: `npm start`
-  - Environment Variables:
-    - `MONGO_URI`: Your MongoDB connection string
-    - `PORT`: 3000 (or let Render auto-assign)
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### How it Works
-- The Express server handles API requests at `/api/v1/*` endpoints
-- All other requests are served the React frontend application
-- This allows both the frontend and backend to run from the same domain
+3. Create a `.env` file in the root directory with the following content:
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   PORT=3000
+   ```
 
-### Important Notes
-- Ensure your MongoDB Atlas cluster has the correct IP whitelisting for Render
-- The frontend build output is served statically by the Express server
+4. Start the server:
+   ```bash
+   npm start
+   ```
 
-## Postman Documentation
+## Testing
 
-The API is fully documented in the included Postman collection file: `Recipe App API.postman_collection.json`
+Run the test scripts to verify the application:
+
+```bash
+# Test route definitions
+npm run test-routes
+
+# Test MongoDB connection (requires valid MONGO_URI in .env)
+npm run test-db
+```
+
+## Deployment to Render
+
+1. Create a new Web Service in Render
+2. Connect it to your GitHub repository
+3. Set the following configuration:
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Environment Variables:
+     - `MONGO_URI`: Your MongoDB connection string
+     - `PORT`: 3000 (or let Render auto-assign)
 
 ## Project Structure
 
@@ -76,26 +95,9 @@ The API is fully documented in the included Postman collection file: `Recipe App
 └── README.md               # Project documentation
 ```
 
-## MVC Pattern
+## API Documentation
 
-This application follows the Model-View-Controller (MVC) pattern:
-
-- **Models**: Define the data structure and interact with the database (`models/Recipe.js`)
-- **Views**: The API responses act as views in this backend-only application
-- **Controllers**: Handle the business logic and HTTP requests (`controllers/recipeController.js`)
-
-## Validation
-
-All recipe data is validated using Joi schemas before being processed or saved to the database.
-
-## Error Handling
-
-The application includes comprehensive error handling for:
-- Invalid recipe IDs
-- Missing or invalid data
-- Database connection issues
-- Validation errors
-- Resource not found errors
+The API is fully documented in the included Postman collection file: `Recipe App API.postman_collection.json`
 
 ## License
 

@@ -99,13 +99,21 @@ app.use((req, res, next) => {
 const routes = require('./routes');
 app.use('/api/v1', routes);
 
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, 'frontend/dist')));
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Recipe App API is running',
+    version: '1.0.0'
+  });
+});
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
 });
 
 // Error handling middleware
