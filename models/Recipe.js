@@ -57,7 +57,7 @@ const recipeSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-    required: true
+    required: false
   },
   image: {
     type: String,

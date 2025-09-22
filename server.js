@@ -43,9 +43,17 @@ const connectDB = async () => {
   try {
     console.log('Attempting to connect to MongoDB...');
     
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 5000,
+    // Add database name to the URI if not present
+    let mongoUri = process.env.MONGO_URI;
+    if (mongoUri && !mongoUri.includes('.mongodb.net/')) {
+      mongoUri = mongoUri.replace('.mongodb.net/', '.mongodb.net/recipeapp?');
+    }
+    
+    const conn = await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 10000,
       socketTimeoutMS: 45000,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
     
     console.log(`MongoDB Connected: ${conn.connection.host}`);
@@ -58,6 +66,7 @@ const connectDB = async () => {
       console.log('2. Verify your MongoDB Atlas credentials');
       console.log('3. Ensure your IP address is whitelisted in MongoDB Atlas');
       console.log('4. Check if the cluster is paused in MongoDB Atlas');
+      console.log('5. Try using 0.0.0.0/0 in Network Access to allow all IPs (for development only)');
     } else {
       console.log('Troubleshooting local MongoDB connection:');
       console.log('1. Ensure MongoDB is installed on your system');
@@ -77,6 +86,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // Routes
 const routes = require('./routes');

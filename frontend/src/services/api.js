@@ -1,13 +1,17 @@
 import axios from 'axios';
 
 // Create an axios instance with default configuration
-const API_BASE_URL = '/api/v1';
+// Use Render URL in production, localhost in development
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://recipe-app-f5hx.onrender.com/api/v1' 
+  : '/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: false,
 });
 
 // Request interceptor

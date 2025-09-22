@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-api": "node test-api.js",
     "test-db": "node test-db-connection.js",
+    "test-deploy": "node test-api-deployment.js",
     "frontend": "cd frontend && npm run dev",
     "dev:full": "concurrently \"npm run dev\" \"npm run frontend\""
   },
@@ -19,7 +20,7 @@
     "recipes",
     "crud"
   ],
-  "author": "Megha",
+  "author": "Meghavarshny <meghavarshny2004@gmail.com>",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
