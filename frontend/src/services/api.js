@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // Create an axios instance with default configuration
-// Use environment variable for API base URL, with fallback to relative path for proxy
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+// In single deployment, API is at the same domain
+const API_BASE_URL = '/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

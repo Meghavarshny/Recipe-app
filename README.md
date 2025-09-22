@@ -27,33 +27,28 @@ A complete CRUD (Create, Read, Update, Delete) application for managing recipes 
 - `PUT /api/v1/recipes/:id` - Update a recipe by ID
 - `DELETE /api/v1/recipes/:id` - Delete a recipe by ID
 
-## Deployment to Render
+## Deployment to Render (Single Deployment)
 
-This application consists of two parts that need to be deployed separately:
+This application uses a single deployment approach where the Express backend serves both the API and the React frontend:
 
-### 1. Backend API Service
+### 1. Single Web Service Deployment
 - Create a new Web Service in Render
 - Connect it to your GitHub repository
 - Set the following configuration:
-  - Build Command: `npm install`
+  - Build Command: `npm install && cd frontend && npm install && npm run build && cd ..`
   - Start Command: `npm start`
   - Environment Variables:
     - `MONGO_URI`: Your MongoDB connection string
     - `PORT`: 3000 (or let Render auto-assign)
 
-### 2. Frontend Static Site
-- Create a new Static Site in Render
-- Connect it to your GitHub repository
-- Set the following configuration:
-  - Build Command: `npm install && cd frontend && npm install && npm run build`
-  - Publish Directory: `frontend/dist`
-  - Environment Variables:
-    - `VITE_API_BASE_URL`: The URL of your deployed backend API
+### How it Works
+- The Express server handles API requests at `/api/v1/*` endpoints
+- All other requests are served the React frontend application
+- This allows both the frontend and backend to run from the same domain
 
 ### Important Notes
-- The frontend and backend must be deployed as separate services
-- Make sure to set the `VITE_API_BASE_URL` environment variable in the frontend to point to your backend API URL
 - Ensure your MongoDB Atlas cluster has the correct IP whitelisting for Render
+- The frontend build output is served statically by the Express server
 
 ## Postman Documentation
 
