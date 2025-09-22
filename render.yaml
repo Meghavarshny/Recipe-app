@@ -1,0 +1,27 @@
+services:
+  # Backend API
+  - type: web
+    name: recipe-app-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: PORT
+        value: 3000
+
+  # Frontend
+  - type: web
+    name: recipe-app-frontend
+    env: static
+    buildCommand: npm install && cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: API_BASE_URL
+        value: https://recipe-app-f5hx.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

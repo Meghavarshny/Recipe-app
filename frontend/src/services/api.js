@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 // Create an axios instance with default configuration
-// Use Render URL in production, localhost in development
-const API_BASE_URL = import.meta.env.PROD 
-  ? 'https://recipe-app-f5hx.onrender.com/api/v1' 
-  : '/api/v1';
+// Use environment variable for API base URL, with fallback to relative path for proxy
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
