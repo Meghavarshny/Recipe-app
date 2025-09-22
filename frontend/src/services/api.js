@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance with default configuration
 // Use environment variable for API base URL, with fallback to relative path for proxy
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -48,27 +48,27 @@ api.interceptors.response.use(
 export const recipeService = {
   // Get all recipes
   getAllRecipes: (page = 1, limit = 10) => {
-    return api.get(`/recipes?page=${page}&limit=${limit}`);
+    return api.get(`/api/v1/recipes?page=${page}&limit=${limit}`);
   },
 
   // Get recipe by ID
   getRecipeById: (id) => {
-    return api.get(`/recipes/${id}`);
+    return api.get(`/api/v1/recipes/${id}`);
   },
 
   // Create a new recipe
   createRecipe: (recipeData) => {
-    return api.post('/recipes', recipeData);
+    return api.post('/api/v1/recipes', recipeData);
   },
 
   // Update a recipe
   updateRecipe: (id, recipeData) => {
-    return api.put(`/recipes/${id}`, recipeData);
+    return api.put(`/api/v1/recipes/${id}`, recipeData);
   },
 
   // Delete a recipe
   deleteRecipe: (id) => {
-    return api.delete(`/recipes/${id}`);
+    return api.delete(`/api/v1/recipes/${id}`);
   },
 };
 
